@@ -12,13 +12,13 @@ create_token(
 source("./Auto_Search_Base.R")
 
 # Set paremeters
-query = "#bbcqt"
-search_amount_once = 1500
-search_interval = 300
-total_duration = as.difftime(90, units = "mins")
+query = "#auspol"
+search_amount_once = 5
+search_interval = 10
+total_duration = as.difftime(1, units = "mins")
 
 # Run search function
 auto_search_tweets(query = query, 
-                   search_amount_once = search_amount_once,
-                   search_interval = search_interval,
-                   total_duration = total_duration)
+                  search_amount_once = search_amount_once,
+                  search_interval = search_interval,
+                  total_duration = total_duration)

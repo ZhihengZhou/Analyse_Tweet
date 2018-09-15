@@ -43,7 +43,7 @@ auto_search_tweets <- function(query, search_amount_once, search_interval, total
   # Select tweet created during the show.
   inDuration = which(rt$created_at >= start_time)
   tweet_df = rt[inDuration,]
-  previous_tweet_amount = nrow(tweet_df)
+  previous_tweets_amount = nrow(tweet_df)
   
   Sys.sleep(search_interval)
   
@@ -56,30 +56,30 @@ auto_search_tweets <- function(query, search_amount_once, search_interval, total
     inDuration = which(rt$created_at >= start_time)
     rt = rt[inDuration,]
     
-    # Combine two tweet data frame
+    # Combine tweet data frame
     tweet_df = rbind(tweet_df, rt)
     raw_rows = nrow(tweet_df)
     tweet_df = unique(tweet_df)
     unique_rows = nrow(tweet_df)
     
-    # No new tweets found, increase the search step.
-    if(unique_rows - previous_tweet_amount <= 0){
+    # No new tweets found, increase the search interval.
+    if(unique_rows - previous_tweets_amount <= 0){
       search_interval = search_interval * 2
     }
     
-    # Searched tweets are all new, decrease the search step.
-    if(unique_rows - previous_tweet_amount >= search_amount_once){
+    # Searched tweets are all new, decrease the search interval.
+    if(unique_rows - previous_tweets_amount >= search_amount_once){
       search_interval = search_interval / 2
     }
-    previous_tweet_amount = unique_rows
-    print(previous_tweet_amount)
+    previous_tweets_amount = unique_rows
+    print(previous_tweets_amount)
     print(search_interval)
     
     now_time = Sys.time()
     if(now_time - start_time > total_duration){
       
       # Save csv
-      file_name = paste(query, start_time, total_duration, sep = "_")
+      file_name = paste(query, Sys.Date(), total_duration, sep = "_")
       file_name = paste("../Data/", file_name, ".csv", sep = "")
       save_df(tweet_df, file_name)
       
@@ -90,8 +90,3 @@ auto_search_tweets <- function(query, search_amount_once, search_interval, total
   }
   
 }
-
-
-### Test
-
-# auto_search_tweet("a", 2, 3, 30)

@@ -12,7 +12,7 @@ create_token(
 source("./Auto_Search_Base.R")
 
 # Set paremeters
-query = "#bbcqt"
+query = "#QandA"
 search_amount_once = 1500
 search_interval = 300
 total_duration = as.difftime(90, units = "mins")
