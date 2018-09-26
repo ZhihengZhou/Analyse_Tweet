@@ -1,4 +1,6 @@
-library(rtweet)
+
+# Loading function
+source("./Auto_Search_Base.R")
 
 #Create tweet API token
 create_token(
@@ -7,9 +9,6 @@ create_token(
   consumer_secret = "sjhQId8edr4nSkccyDiwJwogA6vqHoGDkqGSnTXNCnlQ8kpvkM",
   access_token = "875178186383835137-iVunpJKrBqGdP9o59zICU20wzU4mwyD",
   access_secret = "ypOqFVOYtuwbXQZ9875iKUAZ7ijtRATFPbnZ6GgnC7MhL")
-
-# Loading function
-source("./Auto_Search_Base.R")
 
 # Set paremeters
 query = "#TheAgenda"

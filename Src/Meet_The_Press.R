@@ -11,7 +11,7 @@ create_token(
   access_secret = "ypOqFVOYtuwbXQZ9875iKUAZ7ijtRATFPbnZ6GgnC7MhL")
 
 # Set paremeters
-query = "#bbcqt"
+query = "#MTP OR #IfitsSunday OR #MTPDaily"
 search_amount_once = 1500
 search_interval = 300
 total_duration = as.difftime(90, units = "mins")

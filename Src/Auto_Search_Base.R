@@ -1,3 +1,4 @@
+library(rtweet)
 
 merge_string_list <- function(string_list, sep){
   
@@ -12,7 +13,7 @@ merge_string_list <- function(string_list, sep){
   return(merged_string)
 }
 
-save_df <- function(rt, save_name){
+save_df <- function(rt, save_dir, save_name){
   
   newrt = data.frame(rt['user_id'])
   for(col_name in colnames(rt)){
@@ -27,6 +28,12 @@ save_df <- function(rt, save_name){
       newrt[,col_name] = rt[,col_name]
     }
     
+  }
+  source("./Judge_botornot.R")
+  newrt = get_bot_score(newrt)
+  
+  if (!file.exists(save_dir)){
+    dir.create(save_dir)
   }
   write.csv(newrt, file = save_name, row.names = F)
 }
@@ -80,8 +87,9 @@ auto_search_tweets <- function(query, search_amount_once, search_interval, total
       
       # Save csv
       file_name = paste(query, Sys.Date(), total_duration, sep = "_")
-      file_name = paste("../Data/", file_name, ".csv", sep = "")
-      save_df(tweet_df, file_name)
+      file_name = paste(file_name, ".csv", sep = "")
+      dir_path = paste("../Data/", query, sep = "")
+      save_df(tweet_df, dir_path, file_name)
       
       break
     }

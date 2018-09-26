@@ -14,7 +14,7 @@ source("./Auto_Search_Base.R")
 # Set paremeters
 query = "#auspol"
 search_amount_once = 5
-search_interval = 10
+search_interval = 5
 total_duration = as.difftime(1, units = "mins")
 
 # Run search function

@@ -1,4 +1,4 @@
-
+library(lubridate)
 # Loading function
 source("./Auto_Search_Base.R")
 
@@ -11,10 +11,14 @@ create_token(
   access_secret = "ypOqFVOYtuwbXQZ9875iKUAZ7ijtRATFPbnZ6GgnC7MhL")
 
 # Set paremeters
-query = "#bbcqt"
+query = "#FoxAndFriends OR #foxandfriends"
 search_amount_once = 1500
 search_interval = 300
-total_duration = as.difftime(90, units = "mins")
+if(wday(Sys.Date()) >= 2 &&wday(Sys.Date()) <= 6){
+  total_duration = as.difftime(180, units = "mins")
+}else{
+  total_duration = as.difftime(240, units = "mins")
+}
 
 # Run search function
 auto_search_tweets(query = query, 
